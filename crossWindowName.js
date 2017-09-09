@@ -12,10 +12,10 @@
 (function(root,factory){
     Object.prototype.crossWindowName = factory;
 })(this,function(options){
-    var loadfn = function(){
-        if(isFirst){
+    var load= function(){
+        if(first){
             iframe.contentWindow.location = options.proxyUrl;//引入一个空页面
-            isFirst = false;
+            first = false;
         } else {
             options.success(iframe.contentWindow.name);
             iframe.contentWindow.document.write('');
@@ -25,14 +25,14 @@
             iframe = null;
         }
     };
-    var isFirst = true;
+    var first = true;
     var iframe = document.createElement('iframe');
     iframe.style.display = 'none';
     iframe.src = options.dataUrl;
     if(iframe.attachEvent){
-        iframe.attachEvent('onload', loadfn);
+        iframe.attachEvent('onload', load);
     } else {
-        iframe.onload = loadfn;
+        iframe.onload = load;
     }     
     document.body.appendChild(iframe);
 })
