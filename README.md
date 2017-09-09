@@ -13,3 +13,14 @@ crossWindowName can cross domain was my package
    Parameter two: proxyUrl;
    parameter three is a successful callback function
 */
+
+for example：
+```
+crossWindowName({
+        dataUrl:'http://jobhere.cn',
+        proxyUrl:'proxy.html', 
+        success:function(data){
+        console.log(data);
+        }
+    });
+```
